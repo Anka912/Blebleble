@@ -1,9 +1,9 @@
 pipeline {
     agent any
 
-    triggers {
-        cron('*/1 * * * *')
-    }
+//    triggers {
+//        cron('*/1 * * * *')
+//   }
 
     tools {
         // Install the Maven version configured as "M3" and add it to the path.
@@ -12,10 +12,8 @@ pipeline {
     }
 
     stages {
-        stage('BLE_NODE_1') {
-            agent {
-                   label "BLE_NODE_1"
-                   }
+        stage('Build') {
+
             steps {
                 cleanWs()
                 scmSkip(deleteBuild: true, skipPattern: '.*\\[ci skip\\].*')
