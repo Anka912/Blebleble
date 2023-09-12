@@ -1,6 +1,8 @@
 pipeline {
 //    agent { label 'BLE_NODE_2' }
-    agent any
+    agent {
+        docker { image 'node:18.17.1-alpine3.18' }
+    }
 
 //    triggers {
 //        cron('*/1 * * * *')
