@@ -1,6 +1,8 @@
 pipeline {
     agent any
-            when { triggeredBy '*/1 * * * *' }
+        when {
+        triggeredBy "*/1 * * * *"
+        }
     tools {
         // Install the Maven version configured as "M3" and add it to the path.
         maven "maven-3"
@@ -27,7 +29,7 @@ pipeline {
                 success {
                     junit allowEmptyResults: true, testResults: '**/target/surefire-reports/TEST-*.xml'
                     archiveArtifacts 'target/*.jar'
-                    slackSend channel: 'jenkins-ark', message: 'ble ble ble :) :)'
+                    slackSend channel: 'jenkins-ark', message: 'ble ble ble :) :) :)'
                 }
             }
         }
