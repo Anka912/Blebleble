@@ -9,13 +9,9 @@ pipeline {
 
     stages {
         stage('Build') {
-        when {
-            not {
-            changelog '.*^\\[ci skip\\] .+$'
-            }
-        }
             steps {
                 cleanWs()
+                scmSkip(deleteBuild: true, skipPattern:'.*\\[ci skip\\].*')
                 // Get some code from a GitHub repository
                 git branch: 'main', url: 'https://github.com/Anka912/szkolenie-ci-jenkins-example.git'
 
