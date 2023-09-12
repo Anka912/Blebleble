@@ -12,7 +12,10 @@ pipeline {
     }
 
     stages {
-        stage('Build') {
+        stage('BLE_NODE_1') {
+            agent {
+                   label "BLE_NODE_1"
+                   }
             steps {
                 cleanWs()
                 scmSkip(deleteBuild: true, skipPattern: '.*\\[ci skip\\].*')
