@@ -1,5 +1,10 @@
 pipeline {
+//    agent { label 'BLE_NODE_2' }
     agent any
+
+//    triggers {
+//        cron('*/1 * * * *')
+//   }
 
     tools {
         // Install the Maven version configured as "M3" and add it to the path.
@@ -10,13 +15,11 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                git url:'https://github.com/Anka912/szkolenie-ci-jenkins.git'
-                dir("docker-pipeline"){
-                script {
-                docker.build('blebleble')
-                }
-                }
+
                 scmSkip(deleteBuild: true, skipPattern: '.*\\[ci skip\\].*')
+                // Get some code from a GitHub repository
+                git branch: 'main', url: 'https://github.com/Anka912/szkolenie-ci-jenkins-example.git'
+
                 // Run Maven on a Unix agent.
                 sh "mvn clean spring-boot:build-image"
 
