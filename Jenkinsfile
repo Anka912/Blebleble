@@ -9,7 +9,11 @@ pipeline {
 
     stages {
         stage('Build') {
-        when { changelog not "^\\[ci skip]*\$" }
+        when {
+            not {
+            changelog '.*^\\[ci skip\\] .+$'
+            }
+        }
             steps {
                 cleanWs()
                 // Get some code from a GitHub repository
