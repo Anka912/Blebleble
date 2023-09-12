@@ -34,7 +34,7 @@ pipeline {
         success {
             junit allowEmptyResults: true, testResults: '**/target/surefire-reports/TEST-*.xml'
             archiveArtifacts 'target/*.jar'
-            slackSend channel: 'jenkins-ark', message: 'ble ble ble :) :) :) :)'
+            slackSend channel: 'jenkins-ark', message: 'ble ble ble ble ble ble ble ble ble :) :) :) :)'
         }
     }
 }
