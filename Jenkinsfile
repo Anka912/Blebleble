@@ -23,7 +23,7 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/Anka912/szkolenie-ci-jenkins-example.git'
 
                 // Run Maven on a Unix agent.
-                sh "mvn -Dmaven.test.failure.ignore=true clean verify"
+                sh "mvn clean spring-boot:build-image"
 
                 // To run Maven on a Windows agent, use
                 // bat "mvn -Dmaven.test.failure.ignore=true clean package"
