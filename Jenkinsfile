@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent { label 'BLE_NODE_2' }
 
 //    triggers {
 //        cron('*/1 * * * *')
@@ -12,10 +12,7 @@ pipeline {
     }
 
     stages {
-        stage('BLE_NODE_2') {
-            agent {
-                   label "BLE_NODE_1"
-                   }
+        stage('Build') {
             steps {
                 cleanWs()
                 scmSkip(deleteBuild: true, skipPattern: '.*\\[ci skip\\].*')
