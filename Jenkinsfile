@@ -1,8 +1,10 @@
 pipeline {
     agent any
-        when {
-        triggeredBy "*/1 * * * *"
-        }
+
+    triggers {
+        cron('H */4 * * 1-5')
+    }
+
     tools {
         // Install the Maven version configured as "M3" and add it to the path.
         maven "maven-3"
@@ -13,7 +15,7 @@ pipeline {
         stage('Build') {
             steps {
                 cleanWs()
-                scmSkip(deleteBuild: true, skipPattern:'.*\\[ci skip\\].*')
+                scmSkip(deleteBuild: true, skipPattern: '.*\\[ci skip\\].*')
                 // Get some code from a GitHub repository
                 git branch: 'main', url: 'https://github.com/Anka912/szkolenie-ci-jenkins-example.git'
 
@@ -23,16 +25,16 @@ pipeline {
                 // To run Maven on a Windows agent, use
                 // bat "mvn -Dmaven.test.failure.ignore=true clean package"
             }
-            post {
-                // If Maven was able to run the tests, even if some of the test
-                // failed, record the test results and archive the jar file.
-                success {
-                    junit allowEmptyResults: true, testResults: '**/target/surefire-reports/TEST-*.xml'
-                    archiveArtifacts 'target/*.jar'
-                    slackSend channel: 'jenkins-ark', message: 'ble ble ble :) :) :)'
-                }
-            }
+        }
+    }
+
+    post {
+        // If Maven was able to run the tests, even if some of the test
+        // failed, record the test results and archive the jar file.
+        success {
+            junit allowEmptyResults: true, testResults: '**/target/surefire-reports/TEST-*.xml'
+            archiveArtifacts 'target/*.jar'
+            slackSend channel: 'jenkins-ark', message: 'ble ble ble :) :) :)'
         }
     }
 }
-
