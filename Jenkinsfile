@@ -1,6 +1,6 @@
 pipeline {
     agent any
-
+            when { triggeredBy 'TimerTrigger' }
     tools {
         // Install the Maven version configured as "M3" and add it to the path.
         maven "maven-3"
