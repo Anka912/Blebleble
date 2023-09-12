@@ -1,5 +1,6 @@
 pipeline {
-    agent { label 'BLE_NODE_2' }
+//    agent { label 'BLE_NODE_2' }
+    agent any
 
 //    triggers {
 //        cron('*/1 * * * *')
