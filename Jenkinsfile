@@ -9,6 +9,7 @@ pipeline {
 
     stages {
         stage('Build') {
+        when { changelog not "^\\[ci skip]*\$" }
             steps {
                 cleanWs()
                 // Get some code from a GitHub repository
