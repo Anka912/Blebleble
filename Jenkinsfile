@@ -12,7 +12,7 @@ pipeline {
             steps {
                 cleanWs()
                 // Get some code from a GitHub repository
-                git branch: 'main', url: 'https://github.com/Anka912/Blebleble.git'
+                git branch: 'main', url: 'https://github.com/Anka912/szkolenie-ci-jenkins-example.git'
 
                 // Run Maven on a Unix agent.
                 sh "mvn -Dmaven.test.failure.ignore=true clean verify"
